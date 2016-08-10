@@ -1,0 +1,78 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style>  
+        div{  
+            font-family: "微软雅黑";  
+            font-size: 18px;  
+            line-height: 23px;  
+            text-align: center;  
+            width: 485px;  
+            margin: 0 auto;  
+        }  
+        .jishu{  
+            background: orange;  
+        }  
+        .oushu{  
+            background: yellow;  
+        }  
+        table td{  
+            padding: 5px 44px;  
+            border: 1px solid #f36;  
+        }  
+        thead tr{  
+            background: #102b6a;  
+            color: white;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div >  
+          
+    </div>  
+    <script src="../jquery-1.11.0.min.js"></script>  
+    <script src="../doT.min.js"></script>  
+  
+    <!-- 将类型设置为template，标识为doT.JS -->  
+    <script type="template" id="dotTmpl">  
+        <table>  
+            <thead>  
+                <tr>  
+                    <th>姓名</th>  
+                    <th>性别</th>  
+                    <th>入学日期</th>  
+                </tr>  
+            </thead>  
+            <tbody>  
+                {{ for(var i=0;i<it.length;i++){ }}    
+                <tr {{ if( i%2 == 0){ }}  
+                        class="jishu"  
+                    {{  }else{ }}   
+                        class="oushu"  
+                    {{ } }}>  
+                    <td>{{=it[i].name}}</td>  
+                    <td>{{=it[i].sex}}</td>  
+                    <td>{{=it[i].date}}</td>  
+                </tr>  
+                {{ }    }}  
+            </tbody>  
+        </table>  
+    </script>  
+    <script>  
+        // 数据  
+        var data = [  
+            {"name":19,"sex":"男","date":"1991年12月21日"},  
+            {"name":19,"sex":"男","date":"1991年12月21日"},  
+            {"name":19,"sex":"男","date":"1991年12月21日"},  
+            {"name":19,"sex":"男","date":"1991年12月21日"},  
+            {"name":19,"sex":"男","date":"1991年12月21日"}  
+        ]  
+        // 通过dot.template调用你所写的dot.JS。  
+        var tmpl = doT.template($("#dotTmpl")[0].text);  
+        // 将数据扔进templ中。并在DIV中显示出来  
+        $("div").html(tmpl(data));  
+    </script>  
+</body>  
+</html>  
